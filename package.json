@@ -1,0 +1,30 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "我的笔记本",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist",
+    "build":"dumi build",
+    "start":"dumi dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aledenn/blog.git"
+  },
+  "keywords": [
+    "note",
+    "blog"
+  ],
+  "author": "licb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aledenn/blog/issues"
+  },
+  "homepage": "https://github.com/Aledenn/blog#readme",
+  "devDependencies": {
+    "dumi": "^1.0.15",
+    "gh-pages": "^2.2.0"
+  }
+}
