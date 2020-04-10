@@ -14,6 +14,7 @@ kube-prompt // 进入命令行交互界面 带补全
 ```
 
 ## 命令
+以下命令 如果没有 使用kube-prompt 前面要加上 kubectl
 查看帮助
 ```
 help

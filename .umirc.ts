@@ -3,4 +3,5 @@ export default {
   base: "/blog/",
   publicPath:'/blog/',
   hash: true,
+  history: { type: 'hash' },
 };
