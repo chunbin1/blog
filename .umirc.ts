@@ -5,10 +5,5 @@ export default defineConfig({
   base: "/blog/",
   publicPath:'/blog/',
   hash: true,
-<<<<<<< HEAD
-  history: { type: 'hash' },
-};
-=======
   history: { type: "hash" },
 });
->>>>>>> template
