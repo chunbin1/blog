@@ -6,5 +6,6 @@ export default defineConfig({
   publicPath:'/blog/',
   hash: true,
   history: { type: "hash" },
-  favicon:'/favicon.ico',
+  favicon:'/blog/favicon.ico',
+  logo: '/blog/logo.png'
 });
