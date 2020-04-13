@@ -22,6 +22,20 @@
 ## 架构
 
 <img src="./image/k8s.png" />
+解析：Kubernetes 架构是一个比较典型的二层架构和 server-client 架构。master作为中间管控节点，与Node进行连接，所有UI 的、clients、这些 user 侧的组件，只会和 Master 进行连接
+
+### Master架构
+#### API Server
+处理API操作
+#### Controller
+对容器进行扩容、修复，都是由Controller进行
+#### Scheduler
+调度器，把用户提交的一个Container，根据对CPU、对memory等需求，找到一台合适的节点进行放置
+#### etcd
+是一个分布式的一个存储系统,API Server 中所需要的这些原信息都被放置在 etcd 中
+
+### Node架构
+<img src="./image/node架构.png" />
 
 ## 核心概念
 ### Pod
