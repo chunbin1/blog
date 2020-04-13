@@ -17,7 +17,7 @@
 ES5中可以使用getter和setter部分改写默认操作，只能应用到单个属性上，无法应用到整个对象上。
 getter、setter是隐藏函数，分别在获取属性值时调用、在设置属性值时调用
 使用：
-```
+```js
 var obj={}
 Object.defineProperty(obj,'a',{
   get(){
