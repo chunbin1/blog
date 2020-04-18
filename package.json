@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "deploy": "gh-pages -d dist",
+    "analyze": "ANALYZE=1 dumi build",
     "build": "dumi build",
     "start": "dumi dev",
     "test": "echo \"Error: no test specified\" && exit 1"
