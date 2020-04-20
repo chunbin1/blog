@@ -11,7 +11,8 @@
 - 浏览器使用Cache-Control做缓存控制，`max-age=31536000,immutable`告诉浏览器可以缓存，下次加载资源浏览器先从本地缓存拿，返回`200(from memory cache)`从内存或者`200(from dist cache)`从本地
 - 前端打包时候改变的文件使用hash标识，只有文件改变才修改hash
 ### 拓展
-[webpack的hash策略](https://juejin.im/post/5d7eedf0e51d4562165535ae#heading-1)
+1. 缓存控制策略：使用webpack的`optimization`里的`splitChunks`把`公共的`、`不常变化`的库提取出来，这样通过强缓存，可以让依赖于该库的界面只需要加载少量资源
+2. [webpack的hash策略](https://juejin.im/post/5d7eedf0e51d4562165535ae#heading-1)
 
 
 ## gzip
