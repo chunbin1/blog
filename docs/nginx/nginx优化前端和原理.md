@@ -13,6 +13,11 @@
 ### 拓展
 1. 缓存控制策略：使用webpack的`optimization`里的`splitChunks`把`公共的`、`不常变化`的库提取出来，这样通过强缓存，可以让依赖于该库的界面只需要加载少量资源
 2. [webpack的hash策略](https://juejin.im/post/5d7eedf0e51d4562165535ae#heading-1)
+3. Expires和Cache-control的区别
+  Expires 如：Thu, 01 Dec 2019 16:00:00 GMT  
+  表示资源的具体过期时间，过期了就得向服务端发请求，指定的是一个时间，可能存在服务器资源和电脑本地时间不同步的问题。  
+  Cache-control，指定从请求的时间开始，允许获取的响应被重用的最长时间（秒）  
+  若俩者同时存在Expires则被Cache-Control的max-age覆盖
 
 
 ## gzip
