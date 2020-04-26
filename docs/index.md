@@ -9,8 +9,17 @@
 [Vue组件库](https://github.com/Aledenn/Cb-UI)<br>
 技术栈：Vue+chai
 ### 基础库
+[Mini-Redux](git@github.com:Aledenn/mini-react-redux.git)<br>
+TODO:
+- [X] redux的实现
+- [ ] react-redux的实现
+
 [Mini-React](https://github.com/Aledenn/cb-react)<br>
-简介：react的迷你实现（更新中）<br>
+简介：react的迷你实现<br>
+TODO：
+- [ ] fiber
+
+技术栈: ts<br>
 [Mini-react-renderer](https://github.com/Aledenn/react-dom-mini)<br>
 简介：react-dom的迷你实现
 ### 框架使用
