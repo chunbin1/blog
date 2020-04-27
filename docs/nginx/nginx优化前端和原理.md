@@ -22,8 +22,8 @@
 
 ## gzip
 ```
-    gzip on; #看 开启gzip
-    gzip_min_length 1k; # 大于该值 g
+    gzip on; # 开启gzip
+    gzip_min_length 1k; # 大于该值 gzip
     gzip_comp_level 2; # gzip的力度,越大越消耗服务器性能
     gzip_types text/plain text/css text/xml text/javascript application/javascript application/json application/xml+rss application/rss+xml application/atom+xml image/svg+xml; # 标识gzip的类型
 ```
