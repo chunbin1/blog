@@ -29,7 +29,8 @@
 ```
 
 ### 适用场景
-几乎所有,但是照片等不适合gzip,会变得更大
+几乎所有,但是照片等不适合gzip,会变得更大。  
+`gzip_min_length 1k;`这个配置最好要开，太小的资源gzip后可能比原来大
 
 ### 原理
 - 请求时候`accept-encoding`字段，告诉服务器能接受的编码方式，Response Headers中 `coding-encoding`告诉浏览器解码方式
