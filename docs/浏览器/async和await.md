@@ -62,6 +62,7 @@ console.log(0)
 foo()
 console.log(3)
 ```
+输出顺序：0=>1=>3=>100=>2
 过程如下
 <img src="./image/async和await之间的配合.png" />
 
@@ -91,5 +92,16 @@ console.log('script end')
 结果：
 script start => bar start => foo => promise executor => script end => bar end => promise then => setTimeout
 分析：
-// todo
-执行bar()时候,await会回promise给主协程，bar中剩下的内容被加入微队列
+
+1. 主进程运行，主进程到seTimeout时候，会把任务放入宏任务对队列  
+输出  script start 
+
+2. 执行bar()时候,await相当于返回一个promise给父协程,相当于在父协程`new Promise((resolve,reject)=>{console.log('foo'); resole()})`，所以会先打印foo,然后，bar中剩下的内容放入微任务队列  
+输出 bar start => foo
+3. 主进程运行了Promise，把then中的内容加入了微任务队列，然后主进程执行完毕  
+输出 promise then => script end
+3. 执行微任务队列，按顺序来
+输出 bar end => promise then   
+4. 执行宏任务队列  
+输出 setTimeout
+
