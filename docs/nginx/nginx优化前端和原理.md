@@ -38,3 +38,6 @@
 
 ### 优化
 gzip会消耗服务器性能，而以nginx为例，它会先搜寻.gz文件并返回，所以我们只要提前压缩好放在服务器中，可以减少一步服务器压缩的过程，使用`compression-webpack-plugin`即可完成
+
+## 好文推荐
+[玩转Nginx](http://blog.hszofficial.site/recommend/2019/03/20/%E7%8E%A9%E8%BD%ACNginx/)
