@@ -34,7 +34,7 @@
 
 ### 原理
 - 请求时候`accept-encoding`字段，告诉服务器能接受的编码方式，Response Headers中 `coding-encoding`告诉浏览器解码方式
-- [gzip的算法原理](https://juejin.im/post/5b793126f265da43351d5125#heading-3) todo: 哈夫曼树复习
+- [gzip的算法原理](https://juejin.im/post/5b793126f265da43351d5125#heading-3) 拓展: [gzip原理](https://luyuhuang.github.io/2020/04/28/gzip-and-deflate.html)
 
 ### 优化
 gzip会消耗服务器性能，而以nginx为例，它会先搜寻.gz文件并返回，所以我们只要提前压缩好放在服务器中，可以减少一步服务器压缩的过程，使用`compression-webpack-plugin`即可完成
