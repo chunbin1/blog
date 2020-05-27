@@ -7,6 +7,7 @@
     "deploy": "gh-pages -d dist",
     "analyze": "ANALYZE=1 dumi build",
     "build": "dumi build",
+    "dev": "dumi dev",
     "start": "dumi dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
