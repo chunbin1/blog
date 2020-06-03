@@ -19,4 +19,22 @@ kube-prompt // 进入命令行交互界面 带补全
 ```
 help
 ```
+### 获取pod
+```
+get pods // 获取所有pods
+
+get pods --show-labels // 查看标签
+
+get pods [podName] -o yaml // 查看生成该pod对应的yaml文件
+```
+
+### label相关
+label由jianjian
+```
+label pods [podName] env=test --overwrite  // 修改标签
+
+label pods [podName] env-  // 去除env标签
+
+get pods --show-labels -l app=test-cloud-text-ds // 根据labels搜索标签
+```
 
