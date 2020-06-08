@@ -18,6 +18,39 @@ DOM是`表述HTML的内部数据结构`，它会将 Web 页面和 JavaScript 脚
 3. 网络进程接收到数据后就往管道中放，`渲染进程则从管道另一边获取数据`，并推给`HTML解析器`。
 4. HTML解析器动态接收字节流，并将其`解析为DOM`。
 
+### 解析字节流的具体流程
+1. 通过分词器将字节流转换为Token,大概分为`文本TOKEN`、`Start Tag`和`End Tag`，分别对应文本标签、开始标签和结束标签
+2. HTML解析器维护了一个Token栈
+- 如果压入到栈中的是`StartTag Token`，HTML 解析器会`为该 Token 创建一个 DOM 节点`，然后将该节点加入到 DOM 树中，它的父节点就是`栈中相邻的那个元素生成的节点`。
+- 如果分词器解析出来是`文本Token`，那么会生成一个文本节点，然后将`该节点加入到 DOM 树中`，文本Token 是`不需要压入到栈中`，它的父节点就是当前栈顶 Token 所对应的 DOM 节点。
+- 如果分词器解析出来的是`EndTag 标签`，比如是EndTag div，HTML 解析器会查看 Token 栈顶的元素是否是 StarTag div，如果是，就将 StartTag div 从栈中弹出，表示该 div 元素解析完成。
+
+[更详细的过程](https://time.geekbang.org/column/article/140140)
+
+## js是如何影响DOM生成的
+### HTML解析器遇到js脚本时候会先暂停
+HTML解析器遇到js脚本会先下载运行js脚本。
+不过浏览器做了很多优化，`预解析操作`，当渲染引擎收到了字节流后，会开启一个预解析线程，用来分析HTML文件中包含的js、css等相关文件，解析到相关文件之后，预解析线程会提前下载这些文件。
+
+### 优化的策略
+- 开启CDN来加速js文件的加载
+- 压缩js文件体积
+- 如果js文件中没有操作DOM相关代码，就可以将该js脚本设置为异步，通过`async或者defer`属
+
+### js依赖CSSDOM
+```js
+div.style.color = 'yellow'
+```
+因为js引擎在解析js之前，是不知道js是否操控了CSSDOM的，所以渲染引擎在遇到js脚本时，不管该脚本是否操控了CSSDOM,都会执行`CSS文件下载，解析操作，再执行js脚本`。
+
+Js脚本是依赖样式表的
+### 优化手段
+- style文件放在头部
+- 使用styled-components?
+
+### 拓展
+#### async和defer的区别
+<img src="./image/js的async和defer的区别.png" />
 
 ## 好文推荐
 [网页性能管理详解](https://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html)
