@@ -18,6 +18,8 @@ DOM是`表述HTML的内部数据结构`，它会将 Web 页面和 JavaScript 脚
 3. 网络进程接收到数据后就往管道中放，`渲染进程则从管道另一边获取数据`，并推给`HTML解析器`。
 4. HTML解析器动态接收字节流，并将其`解析为DOM`。
 
+<img src="./image/字节码生成DOM树.png" />
+
 ### 解析字节流的具体流程
 1. 通过分词器将字节流转换为Token,大概分为`文本TOKEN`、`Start Tag`和`End Tag`，分别对应文本标签、开始标签和结束标签
 2. HTML解析器维护了一个Token栈
@@ -50,6 +52,7 @@ Js脚本是依赖样式表的
 
 ### 拓展
 #### async和defer的区别
+async会在加载完后立即执行,defer会在DOMContentLoaded事件之前执行
 <img src="./image/js的async和defer的区别.png" />
 
 ## 好文推荐
