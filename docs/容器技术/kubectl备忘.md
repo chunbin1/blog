@@ -36,5 +36,7 @@ label pods [podName] env=test --overwrite  // 修改标签
 label pods [podName] env-  // 去除env标签
 
 get pods --show-labels -l app=test-cloud-text-ds // 根据labels搜索标签
+
+get pods --show-labels -l 'env in (test,env)' // 获得标签env为test或者env的pods
 ```
 
