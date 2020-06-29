@@ -17,7 +17,7 @@ TODO:
 [Mini-React](https://github.com/Aledenn/cb-react)<br>
 简介：react的迷你实现<br>
 TODO：
-- [ ] fiber
+- [X] fiber
 
 技术栈: ts<br>
 [Mini-react-renderer](https://github.com/Aledenn/react-dom-mini)<br>
