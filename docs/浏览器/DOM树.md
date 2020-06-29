@@ -55,5 +55,40 @@ Js脚本是依赖样式表的
 async会在加载完后立即执行,defer会在DOMContentLoaded事件之前执行
 <img src="./image/js的async和defer的区别.png" />
 
+## 从浏览器的渲染角度分析图片会加载吗？
+关键点--浏览器渲染顺序：
+1. 解析HTML，遇到img标签加载图片，构建dom树
+2. 加载样式=>解析样式（遇到背景图片链接不加载）=>构建样式树
+3. 把DOM树和样式树合成为渲染树(遍历DOM树时加载样式规则上的背景图片)
+4. 布局
+5. 绘制
+### img标签display:none
+```html
+<img src="../image/test.png" style="display:none">
+<div class="img-test" style="display:none"></div>
+
+<style>
+.img-test {
+    background-image: url(../image/test.png);
+}
+</style>
+```
+结果分析：
+img标签会被加载，而css背景图不会，`因为display为none,不会把该元素加入渲染树`
+
+### 伪类元素的背景图片
+```html
+<div class="img-green"></div>
+<style>
+.img-green {
+    background-image: url(../image/green.png);
+}
+.img-green:hover{
+    background-image: url(../image/red.png);
+}</style>
+```
+结果：hover后加载red.png
+分析：hover后该样式才被加载到渲染树，才会加载背景图片
+
 ## 好文推荐
 [网页性能管理详解](https://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html)
