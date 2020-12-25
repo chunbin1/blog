@@ -30,7 +30,7 @@ jobs:
         run: yarn run build
 
       - name: deploy gh page
-        uses: Cecilapp/GitHub-Pages-deploy@master
+        uses: Cecilapp/GitHub-Pages-deploy@v2
         env:
           EMAIL: 545360100@qq.com # must be a verified email
           GH_TOKEN: ${{ secrets.GH_PAGE_TOKEN }} # https://github.com/settings/tokens
