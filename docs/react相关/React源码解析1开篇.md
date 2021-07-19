@@ -38,7 +38,7 @@ const virtualDOM = {
 
 ### React.createElement、jsx和babel
 React是通过React.createElement产生虚拟DOM的
-```jsx
+```js
 <div id="app">
   <p class="text">hello world!!!</p>
 </div>
@@ -50,7 +50,7 @@ React.createElement("div", {
 }, "hello world!!!"));
 ```
 但是这样的写法写程序非常不友好，所以有了jsx
-```jsx
+```js
 function Test(props){
   return <div>
     你好

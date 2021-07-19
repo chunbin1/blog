@@ -1,7 +1,7 @@
 # React源码解析（二）-- 虚拟DOM的生成
 ## createElement
 以以下片段为例子
-```jsx
+```js
 <div style={{
   width:120
 }}>
@@ -118,7 +118,7 @@ const ReactElement = function(type, key, ref, self, source, owner, props) {
 ## 小知识点
 ### defaultProps
 设置默认props值，使用方法
-```jsx
+```js
 // 函数组件
 function Text(props){
   return <div>
