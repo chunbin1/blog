@@ -50,6 +50,9 @@ Js脚本是依赖样式表的
 - style文件放在头部
 - 使用styled-components?
 
+## 总结
+js的执行会阻塞DOM树的生成，css会阻碍js的执行
+
 ### 拓展
 #### async和defer的区别
 async会在加载完后立即执行,defer会在DOMContentLoaded事件之前执行
