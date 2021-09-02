@@ -58,6 +58,10 @@ js的执行会阻塞DOM树的生成，css会阻碍js的执行
 async会在加载完后立即执行,defer会在DOMContentLoaded事件之前执行
 <img src="./image/js的async和defer的区别.png" />
 
+#### load事件和DOMContentLoaded事件的区别
+load是当页面的html、css、js、图片等资源全部加载完毕后触发。
+DOMContentLoaded是html文档被完全加载和解析完成之后触发。
+
 ## 从浏览器的渲染角度分析图片会加载吗？
 关键点--浏览器渲染顺序：
 1. 解析HTML，遇到img标签加载图片，构建dom树
