@@ -113,7 +113,86 @@ a + 4 // 7
 ```
 修改Symbol.toPrimitive可以改变`ToPrimitive`行为。
 
+## 宽松相等
+虽然从来不用=。=
+### 字符串和数字之间的相等比较
+ES5规范规定，如果其中之一是数字x，另一是字符串y，返回x == ToNumber(y)
+```js
+var a = 42
+var b = '42'
 
+a == b
+```
 
+### 其他类型和布尔类型的相等比较
+根据规范，如果其中之一是布尔类型x,另一是任意类型y，返回ToNumber(x) == y的结果
+```js
+var x = true
+var y = '42'
 
+x == y // false
+```
+过程：
+1. x为true，转换为1，求 1 == '42'的结果
+2. 1为Number类型，‘42’为字符串类型，依照字符串和数字之间的相等比较
+3. ‘42’被转换为42
+4. 1==42得出false
 
+### null和undefined的相等比较
+根据规范，其中之一的x为null，另一y为undefined，则结果为true，在==中，null和undefined相等且与自身相等，除此之外其他值不和它们两相等。
+
+```js
+var a = undefined
+var b = null
+
+a == b // true
+a == undefined // true
+
+a == '12' // false
+a == false // false
+```
+
+### 对象与非对象之间的相等比较
+规矩ES5规范，其中之一x为字符串或数字，另一y为对象，则返回 x == ToPrimitive(y)的结果
+
+···
+var a = 42
+var b = [42]
+
+a == b // true
+···
+过程分析：
+1. b调用ToPrimitive操作，返回'42'
+2. 得 42 == ‘42’,根据对象和字符串的==规则,调用ToNumber操作
+3. 得 42 == 42, 返回true
+
+### 困难例子的过程分析
+1. “0” == false
+ - 因为有boolean类型，先调用 ToNumber(false)
+ - 得到 "0" == "0", 返回true
+
+2. false == 0
+ - 因为有boolean类型，先调用 ToNumber(false)
+ - 得到 "0" == 0, 调用字符串和数字类型的==规则
+ - 得到 0 == 0， 返回true
+
+3. 0 == []
+ - 因为有对象类型，调用 ToPrimitive
+ - 得到 0 == "", 调用字符串和数字类型的==规则
+ - 得到 0 == 0，返回true
+
+4. [] == ![]
+ - !运算符强制类型转换，得 [] == true
+ - 因为有对象类型，调用 ToPrimitive, 得 "" == false
+ - 因为有boolean，根据布尔类型和其他类型的转换，得到 "" == 0
+ - 根据字符串类型和数字类型的转换规则，得到 0 == 0 , 返回true
+
+ ## 抽象关系比较
+ 首先调用ToPrimitive，如果出现非字符串，根据ToNumber规则把双方转换为数字类型进行比较。
+ ```js
+ var a = [42]
+ var b = ['43']
+
+ a<b // true
+ ```
+ 如果双方都是字符串，todo
