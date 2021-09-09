@@ -117,6 +117,15 @@ a + 4 // 7
 undefined + false // Number(undefined) + Number(false) =  NaN + 0
 ```
 
+#### 坑
+```js
+{} + [] // 0
+[] + {} // '[object Object]'
+```
+解释:
+第一个`{}+[]`其中，`{}`被js引擎解释为代码块，只是里面没有代码。所以`{}+[]`等于0。
+而第二个执行ToPrimitive操作，得到'[object Object]'。
+
 ## 宽松相等
 虽然从来不用=。=
 ### 字符串和数字之间的相等比较
