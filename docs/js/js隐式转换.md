@@ -80,7 +80,7 @@ ps：值得注意的是，这种一元形式转换大部分被归为显式类型
 
 ### +运算符
 +运算符能用于数字加法和字符串拼接
-`+运算符的转换规则：调用ToPrimitive规则，如果其中一个被转换为了字符串类型，那么就执行拼接操作。`
+`+运算符的转换规则：如果是对象则调用ToPrimitive规则，如果其中一个经过ToPrimitive被转换为了字符串类型或者就是字符串类型，那么就执行拼接操作。否则调用ToNumber操作进行数字相加`
 ```js
 const a = [1,2]
 const b = [3,4]
@@ -112,6 +112,10 @@ a[Symbol.toPrimitive] = function(){
 a + 4 // 7
 ```
 修改Symbol.toPrimitive可以改变`ToPrimitive`行为。
+
+```js
+undefined + false // Number(undefined) + Number(false) =  NaN + 0
+```
 
 ## 宽松相等
 虽然从来不用=。=
@@ -187,7 +191,7 @@ a == b // true
  - 因为有boolean，根据布尔类型和其他类型的转换，得到 "" == 0
  - 根据字符串类型和数字类型的转换规则，得到 0 == 0 , 返回true
 
- ## 抽象关系比较
+## 抽象关系比较
  首先调用ToPrimitive，如果出现非字符串，根据ToNumber规则把双方转换为数字类型进行比较。
  ```js
  var a = [42]
@@ -195,4 +199,14 @@ a == b // true
 
  a<b // true
  ```
- 如果双方都是字符串，todo
+ 如果双方都是字符串，则按照字母顺序返回布尔值
+ ```js
+ var a = ['42']
+ var b = ['043']
+
+ a < b // false
+ ```
+ 过程：
+    1. ToPrimitive转换为字符串‘42’、‘043’。
+    2. 因为'4'在字母顺序上小于'0',所以返回false
+应该是按照ASCII码做比较, 所以 字母小写 > 字母大写 > 数字
