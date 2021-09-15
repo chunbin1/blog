@@ -158,7 +158,26 @@ console.log(a.name) // 'lcb'
 ```
 
 ### 箭头函数
-一句话：箭头函数this和外层的this`（全局/函数作用域）`作用域一致
+一句话：箭头函数this和外层的this`（全局/函数作用域）`作用域一致。
+例1:
+```js
+const a = {
+  name:'a',
+  getName:()=>{
+    console.log(this.name)
+  }
+}
+
+a.getName() // undefined
+
+const b = {
+  name:"b"
+}
+
+a.getName.call(b) // undefined
+```
+this被绑在了全局作用域下
+
 ```js
 function foo() {
   setTimeout(() => {
@@ -181,7 +200,7 @@ const obj = {
 foo.call(obj); // lcb
 foo2.call(obj) // 浏览器为global node为undefined
 ```
-分析：箭头函数this和外层的函数作用域中的this保持一致,其中`foo中的this指向了obj对象`，所以箭头函数中的this指向obj对象  
+分析：箭头函数this和`外层的函数作用域中`的this保持一致,其中`foo中的this指向了obj对象`，所以箭头函数中的this指向obj对象。
 把foo转化为ES5
 ```js
 function foo() {

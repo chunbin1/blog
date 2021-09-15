@@ -20,3 +20,38 @@ visibility: hidden
 ## css中的content元素
 可以和伪元素:after、:before一起使用，给某些元素前后加上文字
 ## 冒泡、捕获
+
+## 事件循环
+```js
+setTimeout(function () {
+  console.log("1");
+}, 0);
+async function async1() {
+  console.log("2");
+  const data = await async2();
+  console.log("3");
+  return data;
+}
+async function async2() {
+  return new Promise((resolve) => {
+    console.log("4");
+    resolve("async2的结果");
+  }).then((data) => {
+    console.log("5");
+    return data;
+  });
+}
+async1().then((data) => {
+  console.log("6");
+  console.log(data);
+});
+new Promise(function (resolve) {
+  console.log("7");
+  //   resolve()
+}).then(function () {
+  console.log("8");
+});
+```
+输出顺序：
+主进程执行输出：
+2 -> 4 -> 7 -> 5 -> 3 -> 6 -> async2的结果 -> 1
