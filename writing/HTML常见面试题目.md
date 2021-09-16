@@ -20,7 +20,8 @@ visibility: hidden
 ## css中的content元素
 可以和伪元素:after、:before一起使用，给某些元素前后加上文字
 ## 冒泡、捕获
-
+冒泡是指从内到外。
+捕获是从外到内。
 ## 事件循环
 ```js
 setTimeout(function () {
