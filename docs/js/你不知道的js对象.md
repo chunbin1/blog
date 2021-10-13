@@ -58,7 +58,8 @@ Obj.a;  // 2 任然为2
 结论：writable为false的时候，属性值的修改会静默的失败, ps:在严格模式下，修改会抛出错误
 我们可以使用Object.defineProperty(...)添加一个属性或者修改一个已有属性(如果他是configurable)
 - enumerable
-如果enumerable为false,for...in循环中不会出现
+如果enumerable为false,for...in循环中、Object.keys不会出现
+但是可以使用Object.getOwnPropertyNames获得
 ```javascript
 var obj = {a:1,b:2}
 Object.defineProperty(obj,'c',{
@@ -68,8 +69,10 @@ Object.defineProperty(obj,'c',{
 for(key in obj){
   console.log(key)
 } // a,b
-obj // {a: 1, b: 2, c: 12}
+Object.keys(obj) // ['a', 'b']
+Object.getOwnPropertyNames(obj) // ['a', 'b', 'c']
 ```
+ps: for...in会遍历原型链上的可遍历对象，Object.keys、getOwnPropertyNames只会遍历自身
 - configurable
 如果configurable为false，修改配置时候会产生一个TypeError错误，把configurable修改为false是单向操作，无法撤销！
 
